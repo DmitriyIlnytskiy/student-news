@@ -14,6 +14,7 @@
     <name>student-news</name>
     <description>Demo student news API</description>
 
+
     <properties>
         <java.version>21</java.version>
     </properties>

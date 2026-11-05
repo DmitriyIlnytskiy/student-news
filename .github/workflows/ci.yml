@@ -4,7 +4,7 @@ name: CI
 # and it is deliberately ordered cheapest-check-first. Lint and unit tests take
 # seconds; building a container image takes minutes; the end-to-end suite takes
 # longer still and lives in its own workflow.
-on:
+on: 
   push:
     branches: [main, master]
   pull_request:
