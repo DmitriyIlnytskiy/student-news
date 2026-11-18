@@ -25,6 +25,7 @@ services:
       interval: 5s
       timeout: 3s
       retries: 10
+      
 
   backend:
     build:
@@ -52,5 +53,23 @@ services:
       # The UI stays at http://localhost:5173; nginx inside listens on 8080.
       - "5173:8080"
 
+  avatar-service:
+    build: ./avatar-service
+    ports:
+      - "8090:8090"
+    volumes:
+      - avatar-data:/data/avatars
+    environment:
+      - PORT=8090
+      - UPLOAD_DIR=/data/avatars
+      - MAX_BYTES=5242880
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8090/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
 volumes:
   postgres_data:
+  avatar-data:
